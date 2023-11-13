@@ -12,22 +12,64 @@ import model.Transaction;
 
 import java.util.List;
 
+/**
+ * View defines all the texts, labels, buttons, table models among other UI elements.
+ */
 public class ExpenseTrackerView extends JFrame {
 
+  /**
+   * Transactions table in the view
+   */
   private JTable transactionsTable;
+
+  /**
+   * Add transaction button table
+   */
   private JButton addTransactionBtn;
+
+  /**
+   * Delete transaction button table
+   */
   private JButton deleteTransactionBtn;
+
+  /**
+   * Amount text field for a transaction
+   */
   private JFormattedTextField amountField;
+
+  /**
+   * Category text field for a transaction
+   */
   private JTextField categoryField;
+
   private DefaultTableModel model;
 
   // private JTextField dateFilterField;
+
+  /**
+   * Category filter text field in the dialog box
+   */
   private JTextField categoryFilterField;
+
+  /**
+   * The category filter button which pops open the categoryFilterField
+   */
   private JButton categoryFilterBtn;
 
+  /**
+   * Amount filter text field in the dialog box
+   */
   private JTextField amountFilterField;
+
+  /**
+   * The amount filter button which pops open the amountFilterField
+   */
   private JButton amountFilterBtn;
 
+  /**
+   * Initializes the UI elements - JTable, button, amount and category filters,
+   * labels
+   */
   public ExpenseTrackerView() {
     setTitle("Expense Tracker"); // Set title
     setSize(600, 400); // Make GUI larger
@@ -85,18 +127,41 @@ public class ExpenseTrackerView extends JFrame {
     setVisible(true);
   }
 
+  /**
+   * This method return a reference to the view table model
+   * 
+   * @return table model
+   */
   public DefaultTableModel getTableModel() {
     return model;
   }
 
+  /**
+   * This method calls the removeRow of the model to delete the selected
+   * transaction
+   * 
+   * @param selectedRow - Row index. The row to be removed from the table
+   *                    This method removes the selected row from the transactions
+   *                    table
+   */
   public void removeTableRow(int selectedRow) {
     model.removeRow(selectedRow);
   }
 
+  /**
+   * This method return a reference to the transactions JTable
+   * 
+   * @return transactions table
+   */
   public JTable getTransactionsTable() {
     return transactionsTable;
   }
 
+  /**
+   * This method returns the user entered double-parsed transaction amount
+   * 
+   * @return the returns the user entered double-parsed transaction amount
+   */
   public double getAmountField() {
     if (amountField.getText().isEmpty()) {
       return 0;
@@ -106,30 +171,67 @@ public class ExpenseTrackerView extends JFrame {
     }
   }
 
+  /**
+   * This method sets the amount field in the table for a transaction
+   * 
+   * @param amountField amount 
+   */
   public void setAmountField(JFormattedTextField amountField) {
     this.amountField = amountField;
   }
 
+  /**
+   * This method returns the user entered category of a transaction
+   * 
+   * @return the text in the category field
+   */
   public String getCategoryField() {
     return categoryField.getText();
   }
 
+  /**
+   * This method sets the category field of a
+   * transaction
+   * 
+   * @param categoryField User enetered category
+   */
   public void setCategoryField(JTextField categoryField) {
     this.categoryField = categoryField;
   }
 
+  /**
+   * This method adds action listener to the category filter button
+   * 
+   * @param listener - the listener to be attached to the button
+   */
   public void addApplyCategoryFilterListener(ActionListener listener) {
     categoryFilterBtn.addActionListener(listener);
   }
 
+  /**
+   * This method displays the dialog box to accept category filter user input
+   * 
+   * @return the JOptionPane dialog box
+   */
   public String getCategoryFilterInput() {
     return JOptionPane.showInputDialog(this, "Enter Category Filter:");
   }
 
+  /**
+   * This method adds action listener to the amount filter button
+   * 
+   * @param listener - the listener to be attached to the button
+   */
   public void addApplyAmountFilterListener(ActionListener listener) {
     amountFilterBtn.addActionListener(listener);
   }
 
+  /**
+   * This method reads the input amount filter entered by the user and type casts
+   * into Double
+   * 
+   * @return The parsed input amount
+   */
   public double getAmountFilterInput() {
     String input = JOptionPane.showInputDialog(this, "Enter Amount Filter:");
     try {
@@ -141,6 +243,14 @@ public class ExpenseTrackerView extends JFrame {
     }
   }
 
+  /**
+   * This method refreshes the table in the view to reflect the latest changes
+   * 
+   * @param transactions - list of transactions
+   *                     This method refreshes the transactions Jtable to reflect
+   *                     the latest changes in the data model
+   *                     It updates the row count, total amount.
+   */
   public void refreshTable(List<Transaction> transactions) {
     // Clear existing rows
     model.setRowCount(0);
@@ -165,14 +275,29 @@ public class ExpenseTrackerView extends JFrame {
 
   }
 
+  /**
+   * This method returns a reference to the add transaction button
+   * 
+   * @return the reference to the add transaction button
+   */
   public JButton getAddTransactionBtn() {
     return addTransactionBtn;
   }
 
+  /**
+   * This method returns a reference to the delete transaction button
+   * 
+   * @return the reference to the delete transaction button
+   */
   public JButton getDeleteTransactionBtn() {
     return deleteTransactionBtn;
   }
 
+  /**
+   * This method highlights the transactions which passes the filter check
+   * 
+   * @param rowIndexes the row indexes of the transactions list
+   */
   public void highlightRows(List<Integer> rowIndexes) {
     // The row indices are being used as hashcodes for the transactions.
     // The row index directly maps to the the transaction index in the list.

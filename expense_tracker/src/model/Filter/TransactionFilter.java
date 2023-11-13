@@ -11,6 +11,11 @@ import model.Transaction;
  */
 public interface TransactionFilter {
 
+  /**
+   * This method is a wrapper. It filters by either amount or category
+   * @param transactions List of transactions
+   * @return filtered transactions
+   */
   public List<Transaction> filter(List<Transaction> transactions);
 
 }

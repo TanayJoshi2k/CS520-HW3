@@ -255,7 +255,7 @@ public class TestExample {
         List<Transaction> transactions = model.getTransactions();
 
         int tableRowCount = view.getTransactionsTable().getRowCount();
-        
+
         try {
             controller.deleteRow(0);
         } catch (IndexOutOfBoundsException e) {
@@ -301,5 +301,5 @@ public class TestExample {
         view = null;
         controller = null;
     }
-    
+
 }

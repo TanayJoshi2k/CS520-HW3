@@ -13,11 +13,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Entry point of the app.
+ * Initializes model, view, controller and action listeners
+ */
 public class ExpenseTrackerApp {
 
-  /**
-   * @param args
-   */
+/**
+ * This class bundles MVC together
+ * @param args - Command line arguments - array of strings 
+ */
   public static void main(String[] args) {
 
     // Create MVC components
