@@ -102,6 +102,7 @@ public class ExpenseTrackerView extends JFrame {
     amountFilterBtn = new JButton("Filter by Amount");
 
     deleteTransactionBtn = new JButton("Delete Transaction");
+    deleteTransactionBtn.setEnabled(false);
 
     // Layout components
     JPanel inputPanel = new JPanel();

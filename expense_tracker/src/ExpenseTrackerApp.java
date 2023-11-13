@@ -19,10 +19,11 @@ import java.awt.event.MouseEvent;
  */
 public class ExpenseTrackerApp {
 
-/**
- * This class bundles MVC together
- * @param args - Command line arguments - array of strings 
- */
+  /**
+   * This class bundles MVC together
+   * 
+   * @param args - Command line arguments - array of strings
+   */
   public static void main(String[] args) {
 
     // Create MVC components

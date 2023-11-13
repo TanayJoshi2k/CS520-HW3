@@ -5,6 +5,7 @@ import view.ExpenseTrackerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import model.ExpenseTrackerModel;
@@ -63,6 +64,17 @@ public class ExpenseTrackerController {
   public void refresh() {
     List<Transaction> transactions = model.getTransactions();
     view.refreshTable(transactions);
+
+    JButton deleteTransactionBtn = view.getDeleteTransactionBtn();
+    int transactionsSize = transactions.size();
+    if (transactionsSize <= 0) {
+      deleteTransactionBtn.setEnabled(false);
+    }
+
+    else {
+      deleteTransactionBtn.setEnabled(true);
+
+    }
   }
 
   /**
