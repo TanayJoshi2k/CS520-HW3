@@ -72,4 +72,16 @@ public class ExpenseTrackerController {
       view.toFront();}
 
   }
+
+  public Transaction deleteRow(int selectedRow) {
+    List<Transaction> transactions = model.getTransactions();
+    if (transactions.size() == 0) {
+      throw new IndexOutOfBoundsException("Table is empty, cannot perform undo");
+    }
+    view.removeTableRow(selectedRow);
+    Transaction t = transactions.get(selectedRow);
+    model.removeTransaction(t);
+    refresh();
+    return t;
+  }
 }
