@@ -94,11 +94,11 @@ public class ExpenseTrackerController {
    * the filter check.
    * If no filter is applied, it displays message dialog with the said error.
    */
-  public void applyFilter() {
+  public List<Transaction> applyFilter() {
     // null check for filter
+    List<Transaction> transactions = model.getTransactions();
     if (filter != null) {
       // Use the Strategy class to perform the desired filtering
-      List<Transaction> transactions = model.getTransactions();
       List<Transaction> filteredTransactions = filter.filter(transactions);
       List<Integer> rowIndexes = new ArrayList<>();
       for (Transaction t : filteredTransactions) {
@@ -108,9 +108,11 @@ public class ExpenseTrackerController {
         }
       }
       view.highlightRows(rowIndexes);
+      return filteredTransactions;
     } else {
       JOptionPane.showMessageDialog(view, "No filter applied");
       view.toFront();
+      return transactions;
     }
 
   }

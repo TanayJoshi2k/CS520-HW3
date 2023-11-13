@@ -126,8 +126,8 @@ public class TestExample {
     // Qestion 1 Add transaction succeeds
     @Test
     public void testAddTransactionView() {
-        double amount = 100.0;
-        String category = "other";
+        double amount = 50.0;
+        String category = "food";
 
         // Table should be empty initially
         assertEquals(0, view.getTransactionsTable().getRowCount());
@@ -152,7 +152,8 @@ public class TestExample {
 
         // List of transactions is empty initially
         assertEquals(0, model.getTransactions().size());
-
+        assertEquals(0, getTotalCost(), 0.01);
+        
         assertFalse(controller.addTransaction(invalidAmount, invalidCategory));
 
         // Transaction should't be added
@@ -185,7 +186,7 @@ public class TestExample {
 
         Color color = new Color(173, 255, 168);
 
-        controller.applyFilter();
+        List<Transaction> filteredTransactions = controller.applyFilter();
         JTable table = view.getTransactionsTable();
 
         List<Transaction> transactions = model.getTransactions();
@@ -201,6 +202,16 @@ public class TestExample {
                 observed.add(false);
             }
         }
+
+        //There should be 2 rows that pass the filter
+        assertEquals(2, filteredTransactions.size());
+
+        // Check every single filtered transaction for its amount
+        for (int i = 0; i < filteredTransactions.size(); i++) {
+            assertEquals(100.0, filteredTransactions.get(i).getAmount(), 0.01);
+        }
+
+        // Check if the correct row indexes are painted
         assertEquals(expected, observed);
     }
 
@@ -228,7 +239,7 @@ public class TestExample {
 
         Color color = new Color(173, 255, 168);
 
-        controller.applyFilter();
+        List<Transaction> filteredTransactions = controller.applyFilter();
         JTable table = view.getTransactionsTable();
 
         List<Transaction> transactions = model.getTransactions();
@@ -244,6 +255,16 @@ public class TestExample {
                 observed.add(false);
             }
         }
+
+        // There should be 3 rows that pass the filter
+        assertEquals(3, filteredTransactions.size());
+
+        // Check every single filtered transaction for its category
+        for (int i = 0; i < filteredTransactions.size(); i++) {
+            assertEquals("food", filteredTransactions.get(i).getCategory());
+        }
+
+        // Check if the correct row indexes are painted
         assertEquals(expected, observed);
     }
 
@@ -259,7 +280,7 @@ public class TestExample {
         try {
             controller.deleteRow(0);
         } catch (IndexOutOfBoundsException e) {
-            // Check that the exception message is as expected
+            // Check that the thrown exception message is as expected
             assertEquals("Table is empty, cannot perform undo", e.getMessage());
         }
     }
@@ -276,6 +297,7 @@ public class TestExample {
         assertTrue(controller.addTransaction(20.0, "bills"));
 
         List<Transaction> transactions = model.getTransactions();
+        assertEquals(270.0, getTotalCost(), 0.01);
 
         // Subtract 1 because an additional row for total is added. There should be 3
         // transactions in the table
