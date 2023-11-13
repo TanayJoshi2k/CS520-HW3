@@ -1,3 +1,21 @@
+commit ca94155e4f90752db5c16b0acfe9c17bbc2c093e
+Author: Tanay Joshi <tanaypjoshi@gmail.com>
+Date:   Mon Nov 13 16:35:38 2023 -0500
+
+    Good UI practice: Added disable behaviour to delete button when there are no transactions
+
+commit ed3e1931a0d16bd4ff295580be652bb005e92810
+Author: Tanay Joshi <tanaypjoshi@gmail.com>
+Date:   Mon Nov 13 16:21:08 2023 -0500
+
+    Final commit
+
+commit 1acff525ec0aa36433dbab60753432529812a54c
+Author: Tanay Joshi <tanaypjoshi@gmail.com>
+Date:   Mon Nov 13 16:14:34 2023 -0500
+
+    Added git log file
+
 commit 8e45653335b2e85002cc3247caa1640e5c89ecfb
 Author: Tanay Joshi <tanaypjoshi@gmail.com>
 Date:   Mon Nov 13 16:12:52 2023 -0500
